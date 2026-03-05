@@ -373,7 +373,15 @@ class UpdateChecker:
         if IS_WINDOWS:
             return "windows"
 
-        # Flatpak tem prioridade sobre gestores nativos
+        # Flatpak: dentro do sandbox, FLATPAK_ID e injetado automaticamente.
+        # Nao podemos rodar "flatpak info" de dentro do sandbox pois o binario
+        # flatpak nao existe no ambiente isolado.
+        flatpak_id = os.environ.get("FLATPAK_ID", "")
+        print(f"[UpdateChecker] FLATPAK_ID env: {flatpak_id!r}")
+        if flatpak_id:
+            return "flatpak"
+
+        # Fora do sandbox (instalacao nativa): tenta flatpak info normalmente
         try:
             r = subprocess.run(
                 ["flatpak", "info", UpdateChecker.FLATPAK_APP_ID],
@@ -383,6 +391,7 @@ class UpdateChecker:
                 return "flatpak"
         except (FileNotFoundError, subprocess.TimeoutExpired):
             pass
+
 
         checks = [
             ("pacman", ["-Q", "tac-writer"], "aur"),

@@ -3904,7 +3904,7 @@ class GoalsDialog(Adw.Window):
     def _calc_consecutive_days(self):
         """
         Calcula quantos dias consecutivos (até hoje) o usuário abriu o app.
-        Lê a lista 'usage_dates' do config — será populada pela Alteração 2
+        Lê a lista 'usage_dates' do config — será populada
         em main_window.py.
         """
         from datetime import date, timedelta
