@@ -2593,6 +2593,7 @@ class MainWindow(Adw.ApplicationWindow):
         
         if project:
             self.current_project = project
+            self._record_usage_date()
             # Show editor optimized
             self._show_editor_view_optimized()
             self._show_toast(_("Projeto aberto: {}").format(project.name))
@@ -3217,7 +3218,10 @@ read
         progress_win.set_content(vbox)
         progress_win.present()
 
-        tmp_path = os.path.join(tempfile.gettempdir(), asset["name"])
+        # ~/Downloads e acessivel tanto no sandbox quanto no host (--filesystem=host)
+        _downloads = os.path.join(os.path.expanduser("~"), "Downloads")
+        os.makedirs(_downloads, exist_ok=True)
+        tmp_path = os.path.join(_downloads, asset["name"])
 
         def worker():
             try:
@@ -3225,7 +3229,7 @@ read
                 urllib.request.urlretrieve(asset["url"], tmp_path)
                 GLib.idle_add(status_label.set_text, _("Instalando bundle flatpak..."))
                 result = subprocess.run(
-                    ["flatpak", "install", "--user", "-y", tmp_path],
+                    ["flatpak-spawn", "--host", "flatpak", "install", "--bundle", "--user", "-y", tmp_path],
                     timeout=300,
                 )
                 success = result.returncode == 0
