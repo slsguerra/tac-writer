@@ -1464,7 +1464,7 @@ def AboutDialog(parent):
     # Application information
     dialog.set_application_name(config.APP_NAME)
     dialog.set_application_icon("tac-writer")
-    dialog.set_version("1.4.0")
+    dialog.set_version("1.4.1")
     dialog.set_developer_name(_(config.APP_DESCRIPTION))
     dialog.set_website(config.APP_WEBSITE)
 
@@ -3283,6 +3283,7 @@ class SupporterDialog(Adw.Window):
             _("Criação de Tabelas nativas"),
             _("Geração de Gráficos integrados"),
             _("Mapa Mental e Planner Guiado"),
+            _("Criação de Mapa"),
             
         ]
         
