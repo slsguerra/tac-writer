@@ -1625,7 +1625,7 @@ class MainWindow(Adw.ApplicationWindow):
             self.current_project.metadata['mindmap'] = meta
             self.current_project.modified_at = datetime.now()
             self.project_manager.save_project(self.current_project)
-            self._show_toast(_("Mapa Mental gerado! Clique no botão 🗺️ para visualizar."))
+            self._show_toast(_("Mapa Mental gerado! Clique no mesmo botão para visualizar."))
         except Exception as e:
             print(f"Erro ao salvar mapa mental: {e}")
             self._show_toast(_("Erro ao salvar o Mapa Mental."), Adw.ToastPriority.HIGH)
