@@ -225,6 +225,14 @@ class MainWindow(Adw.ApplicationWindow):
         self.references_button.set_sensitive(False) 
         self.header_bar.pack_start(self.references_button)
 
+        # Synonyms and antonyms dictionary
+        self.dictionary_button = Gtk.Button()
+        self.dictionary_button.set_icon_name('tac-dictionary')
+        self.dictionary_button.set_tooltip_text(_("Dicionário de Sinônimos e Antônimos"))
+        self.dictionary_button.connect('clicked', self._on_dictionary_clicked)
+        self.dictionary_button.set_sensitive(False)
+        self.header_bar.pack_start(self.dictionary_button)
+
         # Right side buttons
         # Menu button
         menu_button = Gtk.MenuButton()
@@ -2819,6 +2827,12 @@ class MainWindow(Adw.ApplicationWindow):
         """Handle references to be used for quotes"""
         from ui.dialogs import ReferencesDialog
         dialog = ReferencesDialog(self)
+        dialog.present()
+
+    def _on_dictionary_clicked(self, button):
+        """Handle synonyms and antonyms dictionary"""
+        from ui.dialogs import DictionaryDialog
+        dialog = DictionaryDialog(self)
         dialog.present()
 
     def _on_sidebar_toggle(self, button):
