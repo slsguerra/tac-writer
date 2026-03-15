@@ -31,7 +31,6 @@
 
 ![Linux Flatpak](https://img.shields.io/github/downloads/narayanls/tac-writer/latest/tac-writer-1.4.2-4.flatpak?style=flat-square&label=Flatpak&color=4A90D9)
 ![Windows EXE](https://img.shields.io/github/downloads/narayanls/tac-writer/latest/TacWriter-1.4.2-4-Setup-x64.exe?style=flat-square&label=Windows+EXE&color=0078D4)
-...
 
 </details>
 
