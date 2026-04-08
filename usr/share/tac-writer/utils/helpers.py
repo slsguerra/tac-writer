@@ -295,7 +295,7 @@ class FormatHelper:
     def format_datetime(dt: datetime, format_type: str = 'default') -> str:
         """Format datetime for display"""
         if format_type == 'short':
-            return dt.strftime('%m/%d/%Y')
+            return dt.strftime('%d/%m/%Y')
         elif format_type == 'long':
             return dt.strftime('%B %d, %Y at %I:%M %p')
         elif format_type == 'time':
